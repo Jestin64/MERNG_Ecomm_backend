@@ -1,0 +1,6 @@
+{
+    "ignore": [".git", "node_modules"],
+    "exec": "yarn start--nodemon",
+    "watch": ["src"],
+    "ext": "ts"
+}
