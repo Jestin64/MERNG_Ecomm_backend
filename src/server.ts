@@ -6,6 +6,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { config } from "../config/config";
 import { createServer } from "http";
+import mongoose from "mongoose";
 
 const app = express();
 const PORT = config.port || "4000";
@@ -20,6 +21,15 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("hello world!");
 });
+
+mongoose
+  .connect(config.mongoUri)
+  .then(() => {
+    console.log("connected to mongodb at uri:", config.mongoUri);
+  })
+  .catch((e) => {
+    console.log("error connecting to mongodb:", e);
+  });
 
 const setupServer = () => {
   return new Promise<void>((resolve) => {
